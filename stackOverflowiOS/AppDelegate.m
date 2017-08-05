@@ -29,8 +29,6 @@
     //make navigation bar visible
     [[UINavigationBar appearance] setTranslucent:NO];
     
-    //set the status bar to white
-    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     UINavigationController *controllerHandle;
     if(nil == navigationHandle)

@@ -309,7 +309,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [tagsArray count];
+    return tagsArray.count;
 }
 
 
