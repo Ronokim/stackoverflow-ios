@@ -16,5 +16,5 @@
 @property(nonatomic, retain)SOMainView *viewObject;
 @property(nonatomic, retain)UIActivityIndicatorView *activityIndicator;
 @property(nonatomic, retain)APIClient *apiObject;
-
+-(void)retryButtonListener:(UIButton *)button;
 @end

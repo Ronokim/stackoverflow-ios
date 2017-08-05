@@ -56,20 +56,11 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    //  //NSLog(@"Did receive res for %d",responseType);
     
     // A response has been received, this is where we initialize the instance var you created
     // so that we can append data to it in the didReceiveData method
     // Furthermore, this method is called each time there is a redirect so reinitializing it
     // also serves to clear it
-    
-    NSHTTPURLResponse *aResponse = (NSHTTPURLResponse *)response;
-    
-    NSLog(@"statusCodeResponse: %ld", (long)aResponse.statusCode);
-    
-    NSString *strError = [NSString stringWithFormat:@"%@", [connection description]];
-    
-    ////NSLog(@"strError: %@", strError);
     
     responseData = [[NSMutableData alloc] init];
 }

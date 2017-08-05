@@ -21,6 +21,7 @@
 		D206B2791F34E718000FB811 /* SOQuestionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D206B2781F34E718000FB811 /* SOQuestionsTableViewCell.m */; };
 		D2ABC5BC1F35DB590021CFAD /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = D2ABC5BB1F35DB590021CFAD /* Podfile */; };
 		D2ABC5CF1F360E7A0021CFAD /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = D2ABC5CE1F360E7A0021CFAD /* UIColor+CustomColors.m */; };
+		D2ABC5D21F365DD20021CFAD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D2ABC5D11F365DD20021CFAD /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,8 @@
 		D2ABC5BB1F35DB590021CFAD /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		D2ABC5CD1F360E7A0021CFAD /* UIColor+CustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColors.h"; sourceTree = "<group>"; };
 		D2ABC5CE1F360E7A0021CFAD /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
+		D2ABC5D01F365DD20021CFAD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		D2ABC5D11F365DD20021CFAD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +175,8 @@
 		D2ABC5BD1F360C1B0021CFAD /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D2ABC5D01F365DD20021CFAD /* Reachability.h */,
+				D2ABC5D11F365DD20021CFAD /* Reachability.m */,
 				D2ABC5CD1F360E7A0021CFAD /* UIColor+CustomColors.h */,
 				D2ABC5CE1F360E7A0021CFAD /* UIColor+CustomColors.m */,
 			);
@@ -304,6 +309,7 @@
 				D206B2691F347C02000FB811 /* SOMainView.m in Sources */,
 				D206B26C1F347CC5000FB811 /* APIClient.m in Sources */,
 				D206B2701F3484CB000FB811 /* GlobalInstances.m in Sources */,
+				D2ABC5D21F365DD20021CFAD /* Reachability.m in Sources */,
 				D206B2731F3489B3000FB811 /* Constants.m in Sources */,
 				D206B24C1F34720B000FB811 /* AppDelegate.m in Sources */,
 				D206B2631F347443000FB811 /* SOController.m in Sources */,

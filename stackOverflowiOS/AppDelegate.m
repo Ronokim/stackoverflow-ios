@@ -30,7 +30,7 @@
     [[UINavigationBar appearance] setTranslucent:NO];
     
     //set the status bar to white
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     UINavigationController *controllerHandle;
     if(nil == navigationHandle)

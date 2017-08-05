@@ -12,6 +12,7 @@
 #import "SOQuestionsTableViewCell.h"
 #import "DateTools.h"
 #import "UIColor+CustomColors.h"
+#import "Reachability.h"
 
 @interface SOMainViewController (){
     
@@ -21,7 +22,7 @@
     NSMutableArray *responseArray, *tagsArray;
     float collectionCellHeight, collectionCellWidth;
     UIRefreshControl *refreshControl;
-    
+    UIButton *retryButton;
 }
 @end
 
@@ -52,15 +53,18 @@
     // Do any additional setup after loading the view.
     self.view = viewObject;
     
+    //get navigationController
     tempHandle =[GlobalInstances getNavigator];
     tempNavigator = tempHandle.navigator;
+    
     
     questionsTableView = (UITableView*)[self.view viewWithTag:1];
     questionsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     questionsTableView.contentInset = UIEdgeInsetsMake(0, 0, 10, 0);
     
-    responseArray = [[NSMutableArray alloc] init];
+    retryButton = (UIButton*)[self.view viewWithTag:2];
     
+    responseArray = [[NSMutableArray alloc] init];
     
     // show activity indicator
     [self showActivityMonitor];
@@ -83,9 +87,27 @@
 
 -(void)fetchData{
     
-    //initiate api call
-    apiObject = [[APIClient alloc] initFetchQuestions];
-    apiObject.delegate = self;
+    //using 3rd party library Reachability
+    //checking for internet connection availability
+    if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable)
+    {
+        //connection unavailable
+        [refreshControl endRefreshing];
+        //dismiss activity indicator
+        [self removeActivityMonitor];
+       
+        //alert user of no internet connection
+        [self presentAlert:@"No internet connection found, this application requires an internet connection."
+                withTitle:@"Network error"];
+        
+    }
+    else
+    {
+        //connection available
+        //initiate api call
+        apiObject = [[APIClient alloc] initFetchQuestions];
+        apiObject.delegate = self;
+    }
 }
 
 #pragma mark APIClient delegate methods
@@ -103,12 +125,19 @@
             
             responseArray =  [responseDictionary objectForKey:@"items"];
             
+            //make UITableView Visible and hide retryButton
+            questionsTableView.hidden = NO;
+            retryButton.hidden = YES;
+            
             //reload the table view to update records
             [questionsTableView reloadData];
         }
         else{
             
             //API failed to return response, alert user
+            [self presentAlert:@"An error occured, please try again."
+                     withTitle:@"Error"];
+                
         }
     }
 }
@@ -320,6 +349,38 @@
     
     //dismiss UIRefreshControl
     [refreshControl endRefreshing];
+}
+
+
+#pragma mark UIAlertController method
+
+-(void) presentAlert:(NSString*)message withTitle:(NSString *)title
+{
+    
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:title
+                                  message:message
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        
+        //make UITableView Hidden and show retryButton
+        questionsTableView.hidden = YES;
+        retryButton.hidden = NO;
+    }];
+    [alert addAction:okAction];
+    
+     [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+#pragma mark retryButton method
+
+-(void)retryButtonListener:(UIButton *)button{
+    
+    [self showActivityMonitor];
+    [self fetchData];
+    
 }
 
 
